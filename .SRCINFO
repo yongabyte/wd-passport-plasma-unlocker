@@ -1,0 +1,24 @@
+pkgbase = wd-passport-kdialog-unlocker
+	pkgdesc = Automated KDE graphical unlocker for hardware-encrypted WD My Passport drives
+	pkgver = 1.0.0
+	pkgrel = 11
+	url = https://github.com/yongabyte/wd-passport-plasma-unlocker
+	arch = x86_64
+	license = GPL-3.0-or-later
+	checkdepends = criterion
+	makedepends = gcc
+	makedepends = libcap
+	depends = kdialog
+	depends = kde-cli-tools
+	depends = bash
+	depends = openssl
+	source = wd-unlocker.sh
+	source = wd-passport-solid-action.desktop
+	source = 70-wd-passport.rules
+	source = wd-passport-unlocker.service
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = wd-passport-kdialog-unlocker

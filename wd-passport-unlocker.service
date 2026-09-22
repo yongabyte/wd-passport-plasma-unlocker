@@ -1,0 +1,11 @@
+[Unit]
+Description=WD My Passport graphical unlock prompt
+# Device-activated user unit (see 70-wd-passport.rules):
+#   ENV{SYSTEMD_USER_WANTS}+="wd-passport-unlocker.service"
+# Runs unprivileged in the user manager with the full session environment,
+# so kdialog follows the KDE theme. No [Install] section: started on device
+# add only, never enabled statically.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/wd-passport-unlocker

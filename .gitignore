@@ -1,0 +1,17 @@
+# Build outputs (makepkg artifact dirs at repo root only)
+/pkg/
+/src/
+*.pkg.tar.zst
+*.pkg.tar.xz
+.SRCINFO.generated
+
+# C backend binaries
+backend/wd-unlocker-backend
+backend/test-runner
+
+# Personal / scratch notes (not for push)
+notes.md
+how-to-publish.md
+
+# makepkg bookkeeping
+*.log

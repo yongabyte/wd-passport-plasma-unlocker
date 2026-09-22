@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*", ATTRS{idVendor}=="1058", TAG+="systemd", TAG+="uaccess", ENV{SYSTEMD_USER_WANTS}+="wd-passport-unlocker.service"

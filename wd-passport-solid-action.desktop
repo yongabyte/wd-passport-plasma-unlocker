@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Service
+# Shows "Unlock WD My Passport" in the Device Notifier on the drive entry.
+# Verified 2026-09-20 with hardware (solid-hardware6 query): Usb+HardDisk
+# matches exactly the Passport drive UDI, excludes the Virtual CD
+# (driveType CdromDrive) and internal disks (bus Platform). Kept to two
+# terms: longer AND chains do not evaluate in solid-hardware6 query.
+# WD-only scoping is not expressible: StorageDrive.vendor is empty and bare
+# `vendor` is not a valid predicate key (both tested, match nothing). Safety
+# net is the backend, which allowlists USB vendor 1058 + WD serials and
+# errors cleanly on other disks.
+X-KDE-Solid-Predicate=[StorageDrive.bus == 'Usb' AND StorageDrive.driveType == 'HardDisk']
+Actions=UnlockWD;
+
+[Desktop Action UnlockWD]
+Name=Unlock WD My Passport
+Icon=dialog-password
+Exec=/usr/bin/wd-passport-unlocker
