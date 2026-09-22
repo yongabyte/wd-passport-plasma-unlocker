@@ -4,9 +4,10 @@
 [![Plasma 6](https://img.shields.io/badge/Plasma-6-purple.svg)](https://kde.org/plasma-desktop/)
 [![Arch Linux](https://img.shields.io/badge/Arch-makepkg-1793D1.svg)](PKGBUILD)
 [![CI](https://github.com/yongabyte/wd-passport-plasma-unlocker/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/yongabyte/wd-passport-plasma-unlocker/actions)
+[![KDE Store](https://img.shields.io/badge/KDE_Store-2372790-blueviolet.svg)](https://www.opendesktop.org/p/2372790/)
 
 **Your encrypted WD My Passport drive, minus the Windows-only unlock dance.**
-Plug it in → a native password prompt pops up → type → Dolphin. No `sudo`, no root service, no Python.
+Plug it in → a native password prompt pops up → type → Dolphin. No `sudo`, no root service, no extra runtime.
 
 ![Demo: plug in, enter password, unlocked](docs/demo.gif)
 
@@ -24,7 +25,7 @@ Plug it in → a native password prompt pops up → type → Dolphin. No `sudo`,
 
 - **Zero-click popup** — `udev` + a `systemd` user unit fire the prompt the millisecond the drive appears. Nothing runs as root.
 - **Looks like your desktop** — runs with your full session environment, so the prompt follows your Plasma theme, fonts, and dark mode.
-- **Featherweight** — unlock-only C backend (~22KB) on system `libcrypto`. No Python runtime, no bundled crypto.
+- **Featherweight** — unlock-only C backend (~22KB) on system `libcrypto`. No extra runtime or bundled crypto.
 - **Rootless by design** — `uaccess` for device access, `cap_sys_rawio` file capability for vendor SCSI opcodes. No `setuid`, no `sudo`.
 
 ![Unlocked drive with Device Notifier action](docs/unlock-prompt.png)
@@ -38,6 +39,7 @@ Plug it in → a native password prompt pops up → type → Dolphin. No `sudo`,
 | From source (Arch) | `git clone https://github.com/yongabyte/wd-passport-plasma-unlocker.git && cd wd-passport-plasma-unlocker && makepkg -si` |
 | From a Release | download `wd-passport-kdialog-unlocker-*.pkg.tar.zst`, then `sudo pacman -U wd-passport-kdialog-unlocker-*.pkg.tar.zst` |
 | Via AUR (once registration reopens) | `yay -S wd-passport-kdialog-unlocker` |
+| Browse on KDE Store | [opendesktop.org/p/2372790](https://www.opendesktop.org/p/2372790/) (showcase + Device Notifier action; full install via the methods above) |
 
 Then:
 ```bash
@@ -76,7 +78,7 @@ journalctl --user -u wd-passport-unlocker.service -f   # watch it fire, no root 
 ## Hack on it
 
 ```bash
-make -C backend test   # 20 criterion tests (vectors match upstream Python)
+make -C backend test   # 20 Criterion tests using published WD vectors
 make -C backend        # builds backend/wd-unlocker-backend
 printf '%s' "YOUR_PASSWORD" | ./backend/wd-unlocker-backend; echo "exit=$?"
 ```
